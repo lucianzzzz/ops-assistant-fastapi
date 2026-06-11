@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>智能运维问答</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 1080px; margin: 32px auto; padding: 0 16px; color: #1f2937; }
+    h1 { margin-bottom: 8px; }
+    form { display: grid; gap: 12px; margin: 24px 0; }
+    input, textarea, button { font: inherit; padding: 10px 12px; border-radius: 8px; border: 1px solid #d1d5db; }
+    textarea { resize: vertical; }
+    button { background: #2563eb; color: white; border: none; cursor: pointer; }
+    button:hover { background: #1d4ed8; }
+    button.secondary { background: #334155; }
+    button.secondary:hover { background: #1e293b; }
+    .grid { display: grid; grid-template-columns: 1fr 180px 120px; gap: 12px; }
+    .agent-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+    .card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px; margin-top: 16px; }
+    .muted { color: #6b7280; }
+    .note { background: #f8fafc; border: 1px solid #dbeafe; }
+    .status-ok { color: #15803d; }
+    .status-missing { color: #b91c1c; }
+    .tabs { display: flex; gap: 8px; margin: 24px 0 16px; border-bottom: 1px solid #e5e7eb; }
+    .tab-button { background: transparent; color: #475569; border: 1px solid transparent; border-bottom: none; border-radius: 10px 10px 0 0; padding: 10px 14px; }
+    .tab-button:hover { background: #f8fafc; color: #1f2937; }
+    .tab-button.active { background: #fff; color: #2563eb; border-color: #e5e7eb; font-weight: 700; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .pill { display: inline-block; padding: 2px 8px; border-radius: 999px; background: #eff6ff; color: #1d4ed8; font-size: 12px; }
+    .error { color: #b91c1c; border-color: #fecaca; background: #fef2f2; }
+    pre { white-space: pre-wrap; word-break: break-word; background: #f9fafb; padding: 12px; border-radius: 8px; max-height: 420px; overflow: auto; }
+    ul { margin: 8px 0 0 20px; }
+    code { background: #f3f4f6; padding: 2px 6px; border-radius: 6px; }
+    @media (max-width: 780px) {
+      .grid, .agent-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <h1>智能运维问答</h1>
+  <p class="muted">输入异常问题，返回命中知识、原因、排查步骤和关联指标；Agent 调试页用于验证规划、记忆、审计和评测能力。</p>
+
+  <div class="tabs" role="tablist">
+    <button class="tab-button active" type="button" data-tab="ask-panel">智能问答</button>
+    <button class="tab-button" type="button" data-tab="agent-panel">Agent 调试</button>
+  </div>
+
+  <section id="ask-panel" class="tab-panel active">
+    <div class="card note">
+      <h3>真实导出数据接入说明</h3>
+      <p>当前数据目录：<code>{{ data_dir }}</code></p>
+      <p>默认文件名：</p>
+      <ul>
+        <li><code>{{ knowledge_file }}</code>：知识库导出 JSON</li>
+        <li><code>{{ metrics_file }}</code>：指标导出 JSON</li>
+        <li><code>{{ public_tags_file }}</code>：公共标签 JSON</li>
+      </ul>
+      <p>可直接通过环境变量覆盖目录：<code>OPS_ASSISTANT_DATA_DIR=/your/export/dir</code></p>
+    </div>
+
+    <div class="card" id="data-source-card">
+      <h3>数据源状态</h3>
+      <p><strong>当前目录：</strong><code>{{ data_source_status.data_dir }}</code></p>
+      <ul>
+        <li>
+          <strong>知识库</strong>：
+          <span class="{% if data_source_status.knowledge.exists %}status-ok{% else %}status-missing{% endif %}">
+            {% if data_source_status.knowledge.exists %}存在{% else %}缺失{% endif %}
+          </span>
+          ，已加载 {{ data_source_status.knowledge.loaded_count }} 条
+          <br />
+          <code>{{ data_source_status.knowledge.file_path }}</code>
+        </li>
+        <li>
+          <strong>指标</strong>：
+          <span class="{% if data_source_status.metrics.exists %}status-ok{% else %}status-missing{% endif %}">
+            {% if data_source_status.metrics.exists %}存在{% else %}缺失{% endif %}
+          </span>
+          ，已加载 {{ data_source_status.metrics.loaded_count }} 条
+          <br />
+          <code>{{ data_source_status.metrics.file_path }}</code>
+        </li>
+        <li>
+          <strong>公共标签</strong>：
+          <span class="{% if data_source_status.public_tags.exists %}status-ok{% else %}status-missing{% endif %}">
+            {% if data_source_status.public_tags.exists %}存在{% else %}缺失{% endif %}
+          </span>
+          ，已加载 {{ data_source_status.public_tags.loaded_count }} 条
+          <br />
+          <code>{{ data_source_status.public_tags.file_path }}</code>
+        </li>
+      </ul>
+    </div>
+
+    <form id="ask-form">
+      <textarea id="question" rows="3" placeholder="例如：IF1接收时延异常怎么处理" required></textarea>
+      <div class="grid">
+        <input id="province" type="text" placeholder="省份（可选）" />
+        <input id="top_k" type="number" min="1" max="10" value="3" />
+        <button type="submit">提问</button>
+      </div>
+    </form>
+
+    <div id="error" class="card error" style="display:none;"></div>
+    <div id="result" class="card" style="display:none;"></div>
+  </section>
+
+  <section id="agent-panel" class="tab-panel">
+    <div class="card note">
+      <h3>Agent 调试说明</h3>
+      <p>这里用于测试新增 Agent 能力：多步计划、会话记忆、审计日志和离线评测。可以先在“智能问答”页提问，再回到这里自动复用最近一次问答结果。</p>
+    </div>
+
+    <div class="agent-grid">
+      <div class="card">
+        <h3>1. 生成 Agent 计划</h3>
+        <form id="plan-form">
+          <input id="agent-session-id" type="text" value="demo" placeholder="session_id" />
+          <textarea id="agent-question" rows="3" placeholder="例如：IF1接收时延异常怎么处理" required>IF1接收时延异常怎么处理</textarea>
+          <input id="agent-keywords" type="text" value="IF1接收时延,网络" placeholder="关键词，用英文逗号分隔" />
+          <div class="grid">
+            <input id="agent-metric" type="text" value="IF1接收时延" placeholder="识别指标" />
+            <input id="agent-confidence" type="number" min="0" max="1" step="0.01" value="0.42" placeholder="置信度" />
+            <button type="submit">生成计划</button>
+          </div>
+        </form>
+        <div class="actions">
+          <button id="use-last-ask" class="secondary" type="button">复用最近问答结果</button>
+          <button id="load-memory" class="secondary" type="button">读取记忆</button>
+        </div>
+        <div id="plan-error" class="card error" style="display:none;"></div>
+        <div id="plan-result" style="display:none;"></div>
+      </div>
+
+      <div class="card">
+        <h3>2. 会话记忆</h3>
+        <p class="muted">接口：<code>GET /api/v1/agent/memory/{session_id}</code></p>
+        <div id="memory-result"><p class="muted">尚未读取。</p></div>
+      </div>
+    </div>
+
+    <div class="agent-grid">
+      <div class="card">
+        <h3>3. 审计日志</h3>
+        <p class="muted">接口：<code>GET /api/v1/agent/audit</code></p>
+        <button id="load-audit" type="button">刷新审计日志</button>
+        <div id="audit-result"><p class="muted">尚未读取。</p></div>
+      </div>
+
+      <div class="card">
+        <h3>4. Agent 评测</h3>
+        <p class="muted">接口：<code>POST /api/v1/agent/evaluate</code></p>
+        <form id="evaluate-form">
+          <textarea id="evaluate-cases" rows="8">[
+  {
+    "case_id": "metric-delay",
+    "question": "IF1接收时延异常怎么处理",
+    "expected_keywords": ["IF1接收时延"]
+  },
+  {
+    "case_id": "network",
+    "question": "网络不通需要先看什么",
+    "expected_keywords": ["网络"]
+  }
+]</textarea>
+          <button type="submit">运行评测</button>
+        </form>
+        <div id="evaluate-error" class="card error" style="display:none;"></div>
+        <div id="evaluate-result" style="display:none;"></div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById('ask-form');
+    const resultEl = document.getElementById('result');
+    const errorEl = document.getElementById('error');
+    const planForm = document.getElementById('plan-form');
+    const planResultEl = document.getElementById('plan-result');
+    const planErrorEl = document.getElementById('plan-error');
+    const memoryResultEl = document.getElementById('memory-result');
+    const auditResultEl = document.getElementById('audit-result');
+    const evaluateForm = document.getElementById('evaluate-form');
+    const evaluateResultEl = document.getElementById('evaluate-result');
+    const evaluateErrorEl = document.getElementById('evaluate-error');
+    let lastAskResult = null;
+
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    }
+
+    function renderJson(data) {
+      return `<pre>${escapeHtml(JSON.stringify(data, null, 2))}</pre>`;
+    }
+
+    function renderList(items) {
+      if (!items || !items.length) return '<p class="muted">无</p>';
+      return `<ul>${items.map(item => `<li>${escapeHtml(typeof item === 'string' ? item : JSON.stringify(item, null, 2))}</li>`).join('')}</ul>`;
+    }
+
+    function showError(element, message) {
+      element.textContent = message;
+      element.style.display = 'block';
+    }
+
+    function hideError(element) {
+      element.style.display = 'none';
+    }
+
+    async function requestJson(url, options = {}) {
+      const response = await fetch(url, options);
+      if (!response.ok) {
+        const text = await response.text();
+        throw new Error(`请求失败: ${response.status} ${text}`);
+      }
+      return response.json();
+    }
+
+    document.querySelectorAll('.tab-button').forEach((button) => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.tab-button').forEach(item => item.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(item => item.classList.remove('active'));
+        button.classList.add('active');
+        document.getElementById(button.dataset.tab).classList.add('active');
+      });
+    });
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      resultEl.style.display = 'none';
+      hideError(errorEl);
+
+      const payload = {
+        question: document.getElementById('question').value,
+        province: document.getElementById('province').value,
+        top_k: Number(document.getElementById('top_k').value || 3),
+      };
+
+      try {
+        const data = await requestJson('/api/v1/assistant/ask', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        lastAskResult = data;
+        resultEl.innerHTML = `
+          <h2>结果</h2>
+          <p><strong>原始问题：</strong>${escapeHtml(data.question)}</p>
+          <p><strong>识别指标：</strong>${escapeHtml(data.normalized_metric || '未识别')}</p>
+          <p><strong>关键词：</strong>${escapeHtml((data.keywords || []).join('，') || '无')}</p>
+          <p><strong>置信度：</strong>${escapeHtml(data.confidence)}</p>
+          <h3>可能原因</h3>
+          ${renderList(data.possible_reason)}
+          <h3>建议步骤</h3>
+          ${renderList(data.suggested_steps)}
+          <h3>下一步建议</h3>
+          ${renderList(data.next_actions)}
+          <h3>命中知识</h3>
+          ${renderJson(data.matched_knowledge)}
+          <h3>关联对象</h3>
+          ${renderJson(data.related_objects)}
+          <h3>可执行动作</h3>
+          ${renderJson(data.executable_actions)}
+          <h3>兜底问题</h3>
+          ${renderJson(data.fallback_questions)}
+        `;
+        resultEl.style.display = 'block';
+      } catch (error) {
+        showError(errorEl, error.message);
+      }
+    });
+
+    document.getElementById('use-last-ask').addEventListener('click', () => {
+      if (!lastAskResult) {
+        showError(planErrorEl, '还没有最近问答结果，请先在“智能问答”页提问。');
+        return;
+      }
+      hideError(planErrorEl);
+      document.getElementById('agent-question').value = lastAskResult.question || '';
+      document.getElementById('agent-keywords').value = (lastAskResult.keywords || []).join(',');
+      document.getElementById('agent-metric').value = lastAskResult.normalized_metric || '';
+      document.getElementById('agent-confidence').value = lastAskResult.confidence ?? 0;
+    });
+
+    planForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      planResultEl.style.display = 'none';
+      hideError(planErrorEl);
+
+      const sessionId = document.getElementById('agent-session-id').value || 'demo';
+      const payload = {
+        session_id: sessionId,
+        question: document.getElementById('agent-question').value,
+        analysis_result: {
+          keywords: document.getElementById('agent-keywords').value.split(',').map(item => item.trim()).filter(Boolean),
+          normalized_metric: document.getElementById('agent-metric').value,
+          confidence: Number(document.getElementById('agent-confidence').value || 0),
+        },
+      };
+
+      try {
+        const data = await requestJson('/api/v1/agent/plans', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        planResultEl.innerHTML = `
+          <h4>计划 <span class="pill">${escapeHtml(data.plan.plan_id)}</span></h4>
+          <p><strong>目标：</strong>${escapeHtml(data.plan.goal)}</p>
+          <p><strong>上下文：</strong>${escapeHtml(data.plan.context_summary)}</p>
+          <h4>步骤</h4>
+          <ol>${data.plan.steps.map(step => `
+            <li>
+              <strong>${escapeHtml(step.title)}</strong>
+              <span class="pill">${escapeHtml(step.tool_name)}</span>
+              ${step.requires_approval ? '<span class="pill">需确认</span>' : ''}
+              <br /><span class="muted">${escapeHtml(step.rationale)}</span>
+            </li>
+          `).join('')}</ol>
+          <h4>推荐动作</h4>
+          ${renderJson(data.plan.recommended_actions)}
+        `;
+        planResultEl.style.display = 'block';
+        renderMemory(data.memory);
+      } catch (error) {
+        showError(planErrorEl, error.message);
+      }
+    });
+
+    function renderMemory(memory) {
+      memoryResultEl.innerHTML = `
+        <p><strong>Session：</strong>${escapeHtml(memory.session_id)}</p>
+        <p><strong>最近问题：</strong>${escapeHtml(memory.last_question || '无')}</p>
+        <h4>Facts</h4>
+        ${renderList(memory.facts)}
+      `;
+    }
+
+    document.getElementById('load-memory').addEventListener('click', async () => {
+      const sessionId = document.getElementById('agent-session-id').value || 'demo';
+      try {
+        renderMemory(await requestJson(`/api/v1/agent/memory/${encodeURIComponent(sessionId)}`));
+      } catch (error) {
+        memoryResultEl.innerHTML = `<p class="status-missing">${escapeHtml(error.message)}</p>`;
+      }
+    });
+
+    document.getElementById('load-audit').addEventListener('click', async () => {
+      try {
+        const data = await requestJson('/api/v1/agent/audit');
+        auditResultEl.innerHTML = data.length ? renderJson(data) : '<p class="muted">暂无审计事件。</p>';
+      } catch (error) {
+        auditResultEl.innerHTML = `<p class="status-missing">${escapeHtml(error.message)}</p>`;
+      }
+    });
+
+    evaluateForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      evaluateResultEl.style.display = 'none';
+      hideError(evaluateErrorEl);
+
+      try {
+        const cases = JSON.parse(document.getElementById('evaluate-cases').value);
+        const data = await requestJson('/api/v1/agent/evaluate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ cases }),
+        });
+        evaluateResultEl.innerHTML = `
+          <p><strong>用例数：</strong>${escapeHtml(data.total_cases)}</p>
+          <p><strong>平均分：</strong>${escapeHtml(data.average_score)}</p>
+          ${renderJson(data.results)}
+        `;
+        evaluateResultEl.style.display = 'block';
+      } catch (error) {
+        showError(evaluateErrorEl, error.message);
+      }
+    });
+  </script>
+</body>
+</html>

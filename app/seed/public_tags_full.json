@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1",
+    "name": "设备ID",
+    "field_name": "device_id",
+    "data_type": "int32",
+    "description": "设备ID"
+  },
+  {
+    "id": "2",
+    "name": "服务ID",
+    "field_name": "service_id",
+    "data_type": "int32",
+    "description": "服务ID"
+  },
+  {
+    "id": "3",
+    "name": "应用ID",
+    "field_name": "app_id",
+    "data_type": "int32",
+    "description": "应用ID"
+  },
+  {
+    "id": "4",
+    "name": "主机地址",
+    "field_name": "host",
+    "data_type": "string",
+    "description": "主机IP地址"
+  },
+  {
+    "id": "5",
+    "name": "数据索引",
+    "field_name": "index",
+    "data_type": "int32",
+    "description": "数据索引"
+  }
+]

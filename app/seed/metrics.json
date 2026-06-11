@@ -1,0 +1,562 @@
+[
+  {
+    "metric": "201000060",
+    "name": "硬盘分区已使用百分比超95%",
+    "measurement": "alarm_metrics",
+    "field_name": "201000060",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "201000054",
+    "name": "硬盘健康状态故障",
+    "measurement": "alarm_metrics",
+    "field_name": "201000054",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": ""
+  },
+  {
+    "metric": "201000076",
+    "name": "设备ping不通",
+    "measurement": "alarm_metrics",
+    "field_name": "201000076",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": ""
+  },
+  {
+    "metric": "201000070",
+    "name": "内存使用率大于95%",
+    "measurement": "alarm_metrics",
+    "field_name": "201000070",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "IF1接收流量大幅增长(同比)",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "IF1接收流量大幅降低(同比)",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "301000736",
+    "name": "IF1 SDTP链路断开",
+    "measurement": "alarm_metrics",
+    "field_name": "301000736",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": ""
+  },
+  {
+    "metric": "None",
+    "name": "[合成层整体]IF1 SDTP链路断开",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": ""
+  },
+  {
+    "metric": "301000735",
+    "name": "IF1接收丢包大于0",
+    "measurement": "alarm_metrics",
+    "field_name": "301000735",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": ""
+  },
+  {
+    "metric": "301000525",
+    "name": "小区关联工参低于90%",
+    "measurement": "alarm_metrics",
+    "field_name": "301000525",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "301000370",
+    "name": "2file_n1n2接收包数为0",
+    "measurement": "alarm_metrics",
+    "field_name": "301000370",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": ""
+  },
+  {
+    "metric": "301000371",
+    "name": "2file_n3接收包数为0",
+    "measurement": "alarm_metrics",
+    "field_name": "301000371",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": ""
+  },
+  {
+    "metric": "301000372",
+    "name": "2file_n4接收包数为0",
+    "measurement": "alarm_metrics",
+    "field_name": "301000372",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": ""
+  },
+  {
+    "metric": "301000374",
+    "name": "2file_n7接收包数为0",
+    "measurement": "alarm_metrics",
+    "field_name": "301000374",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": ""
+  },
+  {
+    "metric": "301000375",
+    "name": "2file_n8接收包数为0",
+    "measurement": "alarm_metrics",
+    "field_name": "301000375",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": ""
+  },
+  {
+    "metric": "301000376",
+    "name": "2file_n10接收包数为0",
+    "measurement": "alarm_metrics",
+    "field_name": "301000376",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": ""
+  },
+  {
+    "metric": "301000377",
+    "name": "2file_n11接收包数为0",
+    "measurement": "alarm_metrics",
+    "field_name": "301000377",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": ""
+  },
+  {
+    "metric": "301000378",
+    "name": "2file_n12接收包数为0",
+    "measurement": "alarm_metrics",
+    "field_name": "301000378",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": ""
+  },
+  {
+    "metric": "301000388",
+    "name": "2file_uu接收包数为0",
+    "measurement": "alarm_metrics",
+    "field_name": "301000388",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": ""
+  },
+  {
+    "metric": "301000394",
+    "name": "2file_cell_mr接收包数为0",
+    "measurement": "alarm_metrics",
+    "field_name": "301000394",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": ""
+  },
+  {
+    "metric": "None",
+    "name": "if1_n1n2接收话单数同比增长大于20%",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "if1_n4接收话单数同比增长大于20%",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "if1_n8接收话单数同比增长大于20%",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "if1_n11接收话单数同比增长大于20%",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "if1_n12接收话单数同比增长大于20%",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "if1_n7接收话单数同比增长大于20%",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "if1_n10接收话单数同比增长大于20%",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "if1_uu接收话单数同比增长大于20%",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "if1_cell_mr接收话单数同比增长大于20%",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "if1_n1n2接收话单数同比减少大于20%",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "if1_n4接收话单数同比减少大于20%",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "if1_n8接收话单数同比减少大于20%",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "if1_n11接收话单数同比减少大于20%",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "if1_n12接收话单数同比减少大于20%",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "if1_n7接收话单数同比减少大于20%",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "if1_n10接收话单数同比减少大于20%",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "if1_uu接收话单数同比减少大于20%",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "if1_cell_mr接收话单数同比减少大于20%",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "301000761",
+    "name": "时差超过阈值NTP服务停止",
+    "measurement": "alarm_metrics",
+    "field_name": "301000761",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": ""
+  },
+  {
+    "metric": "",
+    "name": "磁盘数量变化",
+    "measurement": "alarm_metrics",
+    "field_name": "",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": ""
+  },
+  {
+    "metric": "202000015",
+    "name": "服务停止运行",
+    "measurement": "alarm_metrics",
+    "field_name": "202000015",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": ""
+  },
+  {
+    "metric": "200000006",
+    "name": "网卡Down",
+    "measurement": "alarm_metrics",
+    "field_name": "200000006",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "Number"
+  },
+  {
+    "metric": "201000039",
+    "name": "网卡丢包",
+    "measurement": "alarm_metrics",
+    "field_name": "201000039",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "Number"
+  },
+  {
+    "metric": "201000004",
+    "name": "CPU使用率高于90%",
+    "measurement": "alarm_metrics",
+    "field_name": "201000004",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "[合成层整体]IF1接收N11接口IMSI回填率低于99%",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "[合成层整体]IF1接收N12接口IMSI回填率低于99%",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "[合成层整体]IF1接收N7接口IMSI回填率低于99%",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "[合成层整体]IF1接收S11接口IMSI回填率低于95%",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "[合成层整体]IF2发送S11接口IMSI回填率低于95%",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "[合成层整体]IF2发送S1MME接口IMSI回填率低于99%",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "[合成层整体]IF2发送N1N2接口IMSI回填率低于99%",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "",
+    "name": "[合成层整体]IF2发送N11接口IMSI回填率低于99%",
+    "measurement": "alarm_metrics",
+    "field_name": "",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "",
+    "name": "[合成层整体]IF2发送N12接口IMSI回填率低于99%",
+    "measurement": "alarm_metrics",
+    "field_name": "",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "",
+    "name": "[合成层整体]IF2发送N7接口IMSI回填率低于99%",
+    "measurement": "alarm_metrics",
+    "field_name": "",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "",
+    "name": "[合成层整体]IF1总接收比IF2总输出增加超过5%",
+    "measurement": "alarm_metrics",
+    "field_name": "",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "",
+    "name": "[合成层整体]IF1总接收比IF2总输出减少超过5%",
+    "measurement": "alarm_metrics",
+    "field_name": "",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "201000038",
+    "name": "网卡接收error",
+    "measurement": "alarm_metrics",
+    "field_name": "201000038",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "Number"
+  },
+  {
+    "metric": "301001641",
+    "name": "se_uploadtool上传积压数量大于5000",
+    "measurement": "alarm_metrics",
+    "field_name": "301001641",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "Number"
+  },
+  {
+    "metric": "None",
+    "name": "IF1总输入与入库数量减少超过5%（整小时）",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "IF1总输入与入库数量增加超过5%（整小时）",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "入库分发失败数量大于0（整小时）",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "301001635",
+    "name": "模块离线",
+    "measurement": "alarm_metrics",
+    "field_name": "301001635",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": ""
+  },
+  {
+    "metric": "None",
+    "name": "IF2总输出比入库数量增加超过5%（整小时）",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "IF2总输出比入库数量减少超过5%（整小时）",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "se_uploadtool上报文件数量同比减少30%",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "se_uploadtool上报服务端异常(断链次数大于0)",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": ""
+  },
+  {
+    "metric": "None",
+    "name": "se_uploadtool15分钟内文件数上报为0",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": ""
+  },
+  {
+    "metric": "None",
+    "name": "[se-dos]SDTP上报流量同比减少30%",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": "%"
+  },
+  {
+    "metric": "None",
+    "name": "[se-dos]SDTP上报服务端异常(断链次数大于0)",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": ""
+  },
+  {
+    "metric": "None",
+    "name": "[se-dos]15分钟内SDTP上报流量为0",
+    "measurement": "alarm_metrics",
+    "field_name": "None",
+    "desc": "{value} {judge_sign} {threshold}",
+    "unit": ""
+  }
+]

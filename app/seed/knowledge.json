@@ -1,0 +1,1170 @@
+[
+  {
+    "id": 1,
+    "question": "网管未扫描添加所有服务器",
+    "reason": "",
+    "method": "",
+    "sort": "网管平台",
+    "province": "福建"
+  },
+  {
+    "id": 2,
+    "question": "合成服务器N4序列化报错",
+    "reason": "bybase需要支持lv的l为0",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "福建"
+  },
+  {
+    "id": 3,
+    "question": "合成服务器N26反序列化报错",
+    "reason": "N26byinc字段初始化错误",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "福建"
+  },
+  {
+    "id": 4,
+    "question": "大数据平台问题没有取走码流文件",
+    "reason": "大数据平台问题未部署",
+    "method": "",
+    "sort": "大数据平台问题",
+    "province": "福建"
+  },
+  {
+    "id": 5,
+    "question": "merge不支持处理N40",
+    "reason": "代码不支持N40反序列化",
+    "method": "合成层问题正在处理",
+    "sort": "采集层问题",
+    "province": "福建"
+  },
+  {
+    "id": 6,
+    "question": "上海核心网工参不完整，基站配置也没有提供",
+    "reason": "",
+    "method": "",
+    "sort": "其它问题",
+    "province": "上海"
+  },
+  {
+    "id": 7,
+    "question": "13文件名大小和文件实际大小不符",
+    "reason": "代码问题，获取文件大小异常",
+    "method": "已提交合成层问题处理，bug 8140",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 8,
+    "question": "15文件时间字段错误",
+    "reason": "代码错误，字段赋值异常",
+    "method": "已提交合成层问题处理，bug 8141",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 9,
+    "question": "13文件IP回填率非常低，14文件无私网IP",
+    "reason": "13是合成逻辑错误，14是代码错误，IP字节序不一致",
+    "method": "已解决",
+    "sort": "合成层问题",
+    "province": "上海"
+  },
+  {
+    "id": 10,
+    "question": "14文件时间字段错误",
+    "reason": "代码问题，字段初始值为0导致",
+    "method": "已解决，bug 8145",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 11,
+    "question": "日志留存访问互联网留存信息文件virtualUserName字段和accessTime字段错误",
+    "reason": "代码问题，字段赋值异常",
+    "method": "已解决",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 12,
+    "question": "15文件用户私网ip字段错误",
+    "reason": "双方的字段解析不一样",
+    "method": "已解决",
+    "sort": "合成层问题",
+    "province": "上海"
+  },
+  {
+    "id": 13,
+    "question": "14文件时间字段错误",
+    "reason": "用户面http的开始时间为空",
+    "method": "已提交合成层问题处理，bug 8145",
+    "sort": "合成层问题",
+    "province": "上海"
+  },
+  {
+    "id": 14,
+    "question": "15文件IP字段和端口字段错误",
+    "reason": "双方字段解析不一样，字节序问题",
+    "method": "已提交合成层问题处理，bug 8143",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 15,
+    "question": "14文件和访问互联网留存信息文件关键字段回填率差",
+    "reason": "双方数据字节序不同，解析异常",
+    "method": "已适配解决",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 16,
+    "question": "合成服务器N22反序列化错误",
+    "reason": "代码错误，不支持N22反序列化",
+    "method": "合成层正在分析处理",
+    "sort": "合成层问题",
+    "province": "福建"
+  },
+  {
+    "id": 17,
+    "question": "数据输出服务器报错",
+    "reason": "调试日志没有删除",
+    "method": "已解决，bug 8123",
+    "sort": "合成层问题",
+    "province": "福建"
+  },
+  {
+    "id": 18,
+    "question": "sendnat报错",
+    "reason": "设计多余，已去掉",
+    "method": "已提交合成层问题处理，bug 8144",
+    "sort": "合成层问题",
+    "province": "福建"
+  },
+  {
+    "id": 19,
+    "question": "全量xdr大数据平台问题未取走",
+    "reason": "",
+    "method": "",
+    "sort": "大数据平台问题",
+    "province": "福建"
+  },
+  {
+    "id": 20,
+    "question": "程序日志文件过大，合成服务器by-client.log已达50G",
+    "reason": "未做文件分割",
+    "method": "已解决，每1G分割一个文件",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 21,
+    "question": "15文件各字段异常",
+    "reason": "两边的解码方式不同",
+    "method": "已适配解决",
+    "sort": "合成层问题",
+    "province": "贵州"
+  },
+  {
+    "id": 22,
+    "question": "日志留存字段列数异常",
+    "reason": "字符串中的特殊字符未做处理",
+    "method": "已将特殊字符替换输出",
+    "sort": "合成层问题",
+    "province": "上海"
+  },
+  {
+    "id": 23,
+    "question": "数据库表为空",
+    "reason": "",
+    "method": "已将特殊字符替换输出",
+    "sort": "大数据平台问题",
+    "province": "福建"
+  },
+  {
+    "id": 24,
+    "question": "14文件用户私网IP字段全为0",
+    "reason": "防火墙数据IP和14文件ip字段字节序不同",
+    "method": "已适配处理",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 25,
+    "question": "IPSY文件列数异常",
+    "reason": "字符串中的特殊字符未做处理",
+    "method": "已将特殊字符替换输出",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 26,
+    "question": "填入工参并重启程序后依然没有回填地市",
+    "reason": "需要根据话单信息查询工参表，是否未配置",
+    "method": "需核对工参",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 27,
+    "question": "15文件里面数据内容重复",
+    "reason": "需要查询收到的防火墙日志是否重复，\n从防火墙日志处理服务器备份目录查询",
+    "method": "查询防火墙日志源文件查看2进制，发现内容重复",
+    "sort": "合成层问题",
+    "province": "上海"
+  },
+  {
+    "id": 28,
+    "question": "合成层未回填N3接口经纬度",
+    "reason": "代码错误，回填功能未做",
+    "method": "已加上回填功能",
+    "sort": "合成层问题",
+    "province": "福建"
+  },
+  {
+    "id": 29,
+    "question": "网管统计IF1的imsi回填率错误，有效imsi总数不用乘2",
+    "reason": "代码错误，输出结果乘了2",
+    "method": "已提交合成层问题，bug号8169",
+    "sort": "合成层问题",
+    "province": "福建"
+  },
+  {
+    "id": 30,
+    "question": "N3接口HTTP（N3103）话单时间字段为空",
+    "reason": "采集层问题",
+    "method": "反馈采集层处理",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 31,
+    "question": "拨测话单N3接口HTTP（N3103）话单流量、时长、host、url等字段为空为0",
+    "reason": "采集层问题",
+    "method": "反馈采集层处理",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 32,
+    "question": "网关结束时间比流程结束时间快几十秒，比接收时间都大\n几十秒",
+    "reason": "反馈采集层",
+    "method": "反馈采集层处理",
+    "sort": "采集层问题",
+    "province": "福建"
+  },
+  {
+    "id": 33,
+    "question": "地市编码对应地市名称错误，833对应了乐山/眉山\n832对应了资阳/内江",
+    "reason": "",
+    "method": "",
+    "sort": "现场问题",
+    "province": "四川"
+  },
+  {
+    "id": 34,
+    "question": "预处理服务器by-client有报错",
+    "reason": "代码问题，merge注册后掉线",
+    "method": "已解决，当前在福建验证",
+    "sort": "合成层问题",
+    "province": "贵州"
+  },
+  {
+    "id": 35,
+    "question": "合成理服务器by-merge.log有报错",
+    "reason": "代码问题，反序列化失败",
+    "method": "正在分析处理",
+    "sort": "合成层问题",
+    "province": "贵州"
+  },
+  {
+    "id": 36,
+    "question": "合成理服务器by-merge.log有报错",
+    "reason": "代码问题，反序列化失败",
+    "method": "正在分析处理",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 37,
+    "question": "防火墙处理 se-sendnat.log有报错",
+    "reason": "设计多余，已去掉",
+    "method": "已解决，bug 8144",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 38,
+    "question": "N26规范83列，现在生成82列。依照规范14列是流程类型，\n现在是时间。",
+    "reason": "配置问题，漏加一个字段",
+    "method": "已解决，添加缺失的字段",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 39,
+    "question": "防火墙原始文件不规范",
+    "reason": "",
+    "method": "",
+    "sort": "现场问题",
+    "province": "贵州"
+  },
+  {
+    "id": 40,
+    "question": "网管查询XDR原始码流导出来发现异常",
+    "reason": "",
+    "method": "",
+    "sort": "网管平台",
+    "province": "四川"
+  },
+  {
+    "id": 41,
+    "question": "N3103话单存在异常列数数据（从现在的数据来看，是应该 HTTP_content_type 这个字段里面的数据 自身包含换行符导致的）",
+    "reason": "字符串中的特殊字符未做处理",
+    "method": "已将特殊字符替换输出",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 42,
+    "question": "11 至上网日志查询系统接口 不支持HTTPS协议",
+    "reason": "",
+    "method": "",
+    "sort": "大数据平台问题",
+    "province": "四川"
+  },
+  {
+    "id": 43,
+    "question": "四川移动N1N2话单用户IPV6错误",
+    "reason": "",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "四川"
+  },
+  {
+    "id": 44,
+    "question": "四川信令面送过来的码流有缺失",
+    "reason": "",
+    "method": "",
+    "sort": "现场问题",
+    "province": "四川"
+  },
+  {
+    "id": 45,
+    "question": "1215版本升级后，各类输出服务器上落盘文件出现大量0字节空文件",
+    "reason": "不是问题，程序默认一定时间内没有数据生成空文件",
+    "method": "可以通过调整配置关闭",
+    "sort": "合成层问题",
+    "province": "贵州"
+  },
+  {
+    "id": 46,
+    "question": "1215版本升级后，各类输出服务器上落盘文件出现大量0字节空文件",
+    "reason": "不是问题，程序默认一定时间内没有数据生成空文件",
+    "method": "可以通过调整配置关闭",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 47,
+    "question": "拨测号码对应归属地区号，如成都填写的28，根据规范应为028",
+    "reason": "代码问题，市输出时前面填0",
+    "method": "已解决",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 48,
+    "question": "拨测号码公网IP及端口回填率低，部分未回填记录在15文件及防火墙预处理chk文件中能找到公网IP和端口",
+    "reason": "N3接口xdr切割导致同一组四元组只能关联一个",
+    "method": "已解决",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 49,
+    "question": "工参信息缺失，需更新工参",
+    "reason": "",
+    "method": "",
+    "sort": "现场问题",
+    "province": "贵州"
+  },
+  {
+    "id": 50,
+    "question": "软采部分信息回填率比较低",
+    "reason": "核查AMF_RegionID、AMF_SetID、AMF_UENGAPID三个字段回填率，有一个为空都无法关联IMSI",
+    "method": "方法已给出，请分析",
+    "sort": "合成层问题",
+    "province": "上海"
+  },
+  {
+    "id": 51,
+    "question": "防火墙原始文件列数正确，15文件存在乱码",
+    "reason": "未更新offset",
+    "method": "输出服务器更新offset文件",
+    "sort": "合成层问题",
+    "province": "贵州"
+  },
+  {
+    "id": 52,
+    "question": "N4接口：XDR填写的IMSI和IMEI是正确的，但是通过XDRID在网管查询出来查看原始码流里面的IMSI和IMEI是异常的",
+    "reason": "",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "四川"
+  },
+  {
+    "id": 53,
+    "question": "N3接口xdrid 重复",
+    "reason": "",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "上海"
+  },
+  {
+    "id": 54,
+    "question": "N1N2接口imsi回填低",
+    "reason": "",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "上海"
+  },
+  {
+    "id": 55,
+    "question": "n1n2接口转发网关开始时间结束时间未填",
+    "reason": "",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "上海"
+  },
+  {
+    "id": 56,
+    "question": "N3接口tag 74 重复 ，且没有url",
+    "reason": "",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "上海"
+  },
+  {
+    "id": 57,
+    "question": "原始码流抵达探针时间和大区转发网关时间有差值",
+    "reason": "",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "上海"
+  },
+  {
+    "id": 58,
+    "question": "N3中DNS协议的upf gtp-teid回填率未达100%",
+    "reason": "",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "上海"
+  },
+  {
+    "id": 59,
+    "question": "防火墙部分原始数据延时达到7分钟，且采集不完整",
+    "reason": "",
+    "method": "",
+    "sort": "防火墙厂家",
+    "province": "四川"
+  },
+  {
+    "id": 60,
+    "question": "防火墙数据采集不完整",
+    "reason": "",
+    "method": "",
+    "sort": "防火墙厂家",
+    "province": "贵州"
+  },
+  {
+    "id": 61,
+    "question": "防火墙数据采集不完整",
+    "reason": "",
+    "method": "",
+    "sort": "防火墙厂家",
+    "province": "上海"
+  },
+  {
+    "id": 62,
+    "question": "N1N2接口一些流程超时占比非常大，例如PDU Session Establishment流程超时达到95%以上，PDU Session Modification流程超时达到82%以上",
+    "reason": "",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "上海"
+  },
+  {
+    "id": 63,
+    "question": "natlog话单，号码填65535；tac和cell回填率不一致；归属地区和拜访地区都为0漫游标识3：国际漫游",
+    "reason": "默认值处理问题",
+    "method": "正确的处理默认值",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 64,
+    "question": "日志留存中用户上下线的用户IP不一致",
+    "reason": "n2话单流程缺失",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "上海"
+  },
+  {
+    "id": 65,
+    "question": "1、私网IPv6时公网IPV6填了两种情况（按照15文件回填、按照私网IPv6回填）；2、目标端口不为空不为0，公网端口为空为0了",
+    "reason": "设计问题",
+    "method": "已解决",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 66,
+    "question": "用户面通用协议话单出现非UPF ip段的ip",
+    "reason": "",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "贵州"
+  },
+  {
+    "id": 67,
+    "question": "防火墙数据部分机房采集数据不完整",
+    "reason": "",
+    "method": "",
+    "sort": "防火墙厂家",
+    "province": "贵州"
+  },
+  {
+    "id": 68,
+    "question": "xdr.natlogcluster内存在upf-ip为0的情况",
+    "reason": "",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "四川"
+  },
+  {
+    "id": 69,
+    "question": "贵州移动onoff话单用户IP回填率不高分析，是上线的ims没填用户IPv6",
+    "reason": "ipv6没有经过nat转换",
+    "method": "将ipv6地址直接赋值到公网ip",
+    "sort": "合成层问题",
+    "province": "贵州"
+  },
+  {
+    "id": 70,
+    "question": "N1N2接口11流程几乎都是超时状态",
+    "reason": "",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "上海"
+  },
+  {
+    "id": 71,
+    "question": "N4接口的PDU Session在N3接口UPF侧的IP地址、PDU Session在N3接口UPF侧的TEID、PDU Session在N3接口AN侧的地址、PDU Session在N3接口AN侧的TEID都没有填写",
+    "reason": "",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "上海"
+  },
+  {
+    "id": 72,
+    "question": "onoffline表里有用户上线IP，N1N2接口没有用户上下线IP",
+    "reason": "触发下线机制问题",
+    "method": "增加22流程触发所有未下线的ip",
+    "sort": "合成层问题",
+    "province": "上海"
+  },
+  {
+    "id": 73,
+    "question": "N4接口的PDU Session在N3接口UPF侧的IP地址、PDU Session在N3接口UPF侧的TEID、PDU Session在N3接口AN侧的地址、PDU Session在N3接口AN侧的TEID都没有填写",
+    "reason": "",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "海南"
+  },
+  {
+    "id": 74,
+    "question": "N1N2接口注册流程msgflage出现7，规范msgflage规定值只有0、1、2、3",
+    "reason": "",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "上海"
+  },
+  {
+    "id": 75,
+    "question": "se-TransTool上报程序消耗资源过大问题",
+    "reason": "传输失败过多",
+    "method": "",
+    "sort": "网络问题",
+    "province": "海南"
+  },
+  {
+    "id": 76,
+    "question": "N11接口中存在大量的tac=cellid的情况",
+    "reason": "",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "上海"
+  },
+  {
+    "id": 77,
+    "question": "信令面和用户面话单号码字段存在非86打头的情况",
+    "reason": "合成层将86去掉了",
+    "method": "正确的添加86",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 78,
+    "question": "信令面和用户面话单号码字段存在非86打头的情况",
+    "reason": "合成层将86去掉了",
+    "method": "正确的添加86",
+    "sort": "合成层问题",
+    "province": "上海"
+  },
+  {
+    "id": 79,
+    "question": "用户面dns话单11个upfip的upfteid回填率低于84%",
+    "reason": "",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "四川"
+  },
+  {
+    "id": 80,
+    "question": "DNS话单imsi回填率低,通过隧道（gnbip+gnbteid ）反查到信令面记录",
+    "reason": "话单延迟",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "四川"
+  },
+  {
+    "id": 81,
+    "question": "用户面话单upf_gtp_teid回填率差",
+    "reason": "",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "上海"
+  },
+  {
+    "id": 82,
+    "question": "13文件：imsi、私网IP?回填率达不到99%",
+    "reason": "上线私网ip回填率采集层保障、下线私网率IP回填率合成层保障",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "上海"
+  },
+  {
+    "id": 83,
+    "question": "用户面话单upf_gtp_teid回填率差",
+    "reason": "",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "贵州"
+  },
+  {
+    "id": 84,
+    "question": "n11话单中存在大tac=cellid的情况",
+    "reason": "",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "贵州"
+  },
+  {
+    "id": 85,
+    "question": "用户面ftp话单4个upfip的upfteid回填率低于80%",
+    "reason": "",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "四川"
+  },
+  {
+    "id": 86,
+    "question": "用户面general话单11个upfip的upfteid回填率低于81%",
+    "reason": "",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "四川"
+  },
+  {
+    "id": 87,
+    "question": "14文件：公网IP、公网端口回填率达不到99%；",
+    "reason": "",
+    "method": "",
+    "sort": "防火墙厂家",
+    "province": "上海"
+  },
+  {
+    "id": 88,
+    "question": "用户面general话单9个upfip的upfteid回填率低于86%",
+    "reason": "",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "四川"
+  },
+  {
+    "id": 89,
+    "question": "信令面话单号码字段存在非86打头的情况",
+    "reason": "合成层将86去掉了",
+    "method": "正确的添加86",
+    "sort": "合成层问题",
+    "province": "贵州"
+  },
+  {
+    "id": 90,
+    "question": "用户面rtsp话单5个upfip的upfteid回填率低于91%",
+    "reason": "",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "四川"
+  },
+  {
+    "id": 91,
+    "question": "信令面和用户面话单号码字段存在非86打头的情况",
+    "reason": "合成层将86去掉了",
+    "method": "正确的添加86",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 92,
+    "question": "用户面rtsp话单拜访地市回填率大于小区回填率，小区为空拜访省地市不为空（n1n2、http、video、mms、ftp、email、sip、general也存在此问题）",
+    "reason": "不是问题，可以通过gnbip回填",
+    "method": "",
+    "sort": "其它问题",
+    "province": "四川"
+  },
+  {
+    "id": 93,
+    "question": "用户面sip话单11个upfip的upfteid回填率低于82%",
+    "reason": "",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "四川"
+  },
+  {
+    "id": 94,
+    "question": "信令面和用户面话单存在漫游类型不为空，拜访省或者拜访地市任意一个为空",
+    "reason": "字段回填错误，取值异常",
+    "method": "已解决，取正常字段回填",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 95,
+    "question": "上下线记录数相差接近一倍，N1N2话单imsi上下线不成对；下线用户IP回填率不达标，N1N2话单下线流程失败时onoff话单下线用户IP就填不上了",
+    "reason": "触发下线机制问题",
+    "method": "增加22流程触发所有未下线的ip",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 96,
+    "question": "natlogcluster表中协议类型全为0",
+    "reason": "字段取值逻辑错误",
+    "method": "已解决",
+    "sort": "合成层问题",
+    "province": "贵州"
+  },
+  {
+    "id": 97,
+    "question": "natlog表area_code、home_code回填率100%，实际回填率只有91%左右，是\"00\"填充上去的",
+    "reason": "不是问题，默认值为0",
+    "method": "",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 98,
+    "question": "natlog表area_code、home_code回填率100%，实际回填率只有84%左右，是\"00\"填充上去的",
+    "reason": "不是问题，默认值为0",
+    "method": "",
+    "sort": "合成层问题",
+    "province": "贵州"
+  },
+  {
+    "id": 99,
+    "question": "n11话单分流程用户ipv4和ipv6回填率为零",
+    "reason": "",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "贵州"
+  },
+  {
+    "id": 100,
+    "question": "四川拨测上线，onoff话单记录异常多（通过N1N2发现不是拨测号码的上线记录）",
+    "reason": "触发上线记录的流程不适合",
+    "method": "修改为11流程触发生成上线记录",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 101,
+    "question": "natlog表area_code、home_code回填率100%，实际回填率只有99%左右，是\"00\"填充上去的",
+    "reason": "不是问题，默认值为0",
+    "method": "",
+    "sort": "合成层问题",
+    "province": "海南"
+  },
+  {
+    "id": 102,
+    "question": "10.210.255.24 srcip回填为空",
+    "reason": "",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "海南"
+  },
+  {
+    "id": 103,
+    "question": "n22原始文件记录与F1 n22不一致（F1有372条原始文件只有4条,反序列化问题）",
+    "reason": "合成反序列化失败，导致数据被丢弃",
+    "method": "正在分析处理",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 104,
+    "question": "13文件下线IP回填率不达标",
+    "reason": "触发下线机制问题",
+    "method": "增加22流程触发所有未下线的ip",
+    "sort": "合成层问题",
+    "province": "上海"
+  },
+  {
+    "id": 105,
+    "question": "无线侧各个接口归属省市、用户漫游类型、IMSI、IMEI、号码回填不达标，Xn接口采集侧回填的字段已达标",
+    "reason": "采集层应该保证关联字段的回填率",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "上海"
+  },
+  {
+    "id": 106,
+    "question": "N3接口话单访问IP有一部分为私网IP，无法关联公网IP、公网端口",
+    "reason": "防火墙日志需要切割",
+    "method": "",
+    "sort": "防火墙厂家",
+    "province": "上海"
+  },
+  {
+    "id": 107,
+    "question": "13文件下线IP回填率不达标",
+    "reason": "触发下线机制问题",
+    "method": "增加22流程触发所有未下线的ip",
+    "sort": "合成层问题",
+    "province": "海南"
+  },
+  {
+    "id": 108,
+    "question": "信令面LAC、CI回填率高，但是拜访省市回填率低，拜访省市回填是否正确",
+    "reason": "信令LAC、CI自身解码回填，拜访省市需查询工参表",
+    "method": "需核查工参是否完善",
+    "sort": "合成层问题",
+    "province": "海南"
+  },
+  {
+    "id": 109,
+    "question": "N3接口话单访问IP有一部分为私网IP，无法关联公网IP、公网端口",
+    "reason": "话单超时时间不能过长，应该按照规范来",
+    "method": "",
+    "sort": "采集层问题",
+    "province": "海南"
+  },
+  {
+    "id": 110,
+    "question": "防火墙解析文件少数数据结束时间字段与原文件不符",
+    "reason": "数据处理异常",
+    "method": "正确的处理数据",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 111,
+    "question": "软件程序消耗内存较高，流量不大",
+    "reason": "数据异常情况下，没有较好的释放内存",
+    "method": "程序调优",
+    "sort": "合成层问题",
+    "province": "海南"
+  },
+  {
+    "id": 112,
+    "question": "预处理注册数变为0",
+    "reason": "心跳消息丢失，导致注册掉线",
+    "method": "已解决，福建验证没问题",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 113,
+    "question": "预处理程序挂掉",
+    "reason": "内存耗尽，被系统kill掉",
+    "method": "已处理，在福建验证中",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 114,
+    "question": "合成程序挂掉",
+    "reason": "内存耗尽，被系统kill掉",
+    "method": "已解决",
+    "sort": "合成层问题",
+    "province": "海南"
+  },
+  {
+    "id": 115,
+    "question": "预处理程序挂掉",
+    "reason": "内存耗尽，被系统kill掉",
+    "method": "已处理，在福建验证中",
+    "sort": "合成层问题",
+    "province": "海南"
+  },
+  {
+    "id": 116,
+    "question": "预处理程序挂掉",
+    "reason": "管理口内存告警，更换内存。",
+    "method": "",
+    "sort": "合成层问题",
+    "province": "海南"
+  },
+  {
+    "id": 117,
+    "question": "合成程序挂掉",
+    "reason": "宕机",
+    "method": "",
+    "sort": "合成层问题",
+    "province": "福建"
+  },
+  {
+    "id": 118,
+    "question": "写文件程序挂掉",
+    "reason": "坏盘三块，data2/data4/data11",
+    "method": "",
+    "sort": "合成层问题",
+    "province": "福建"
+  },
+  {
+    "id": 119,
+    "question": "预处理程序挂掉",
+    "reason": "系统登录异常",
+    "method": "",
+    "sort": "合成层问题",
+    "province": "福建"
+  },
+  {
+    "id": 120,
+    "question": "预处理程序挂掉",
+    "reason": "系统登录异常",
+    "method": "",
+    "sort": "合成层问题",
+    "province": "福建"
+  },
+  {
+    "id": 121,
+    "question": "预处理程序挂掉",
+    "reason": "系统登录异常",
+    "method": "",
+    "sort": "合成层问题",
+    "province": "福建"
+  },
+  {
+    "id": 122,
+    "question": "预处理程序挂掉",
+    "reason": "系统登录异常",
+    "method": "",
+    "sort": "合成层问题",
+    "province": "福建"
+  },
+  {
+    "id": 123,
+    "question": "写文件程序挂掉",
+    "reason": "系统登录异常",
+    "method": "",
+    "sort": "合成层问题",
+    "province": "福建"
+  },
+  {
+    "id": 124,
+    "question": "写文件程序挂掉",
+    "reason": "系统登录异常",
+    "method": "",
+    "sort": "合成层问题",
+    "province": "福建"
+  },
+  {
+    "id": 125,
+    "question": "写文件程序挂掉",
+    "reason": "系统登录异常",
+    "method": "",
+    "sort": "合成层问题",
+    "province": "福建"
+  },
+  {
+    "id": 126,
+    "question": "预处理程序挂掉",
+    "reason": "内存耗尽，被系统kill掉",
+    "method": "已处理，在福建验证中",
+    "sort": "合成层问题",
+    "province": "贵州"
+  },
+  {
+    "id": 127,
+    "question": "合成程序挂掉",
+    "reason": "内存故障",
+    "method": "已解决",
+    "sort": "合成层问题",
+    "province": "贵州"
+  },
+  {
+    "id": 128,
+    "question": "预处理程序挂掉",
+    "reason": "内存耗尽，被系统kill掉",
+    "method": "已处理，在福建验证中",
+    "sort": "合成层问题",
+    "province": "贵州"
+  },
+  {
+    "id": 129,
+    "question": "集群挂掉",
+    "reason": "",
+    "method": "",
+    "sort": "大数据平台问题",
+    "province": "贵州"
+  },
+  {
+    "id": 130,
+    "question": "集群挂掉",
+    "reason": "",
+    "method": "",
+    "sort": "大数据平台问题",
+    "province": "贵州"
+  },
+  {
+    "id": 131,
+    "question": "集群挂掉",
+    "reason": "",
+    "method": "",
+    "sort": "大数据平台问题",
+    "province": "贵州"
+  },
+  {
+    "id": 132,
+    "question": "合成程序挂掉",
+    "reason": "内存耗尽，被系统kill掉",
+    "method": "已解决",
+    "sort": "合成层问题",
+    "province": "贵州"
+  },
+  {
+    "id": 133,
+    "question": "写文件程序挂掉",
+    "reason": "坏盘一块，data10",
+    "method": "",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 134,
+    "question": "合成挂掉",
+    "reason": "两个光模块故障，已协调服务器厂商进行处理",
+    "method": "",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 135,
+    "question": "预处理程序挂掉",
+    "reason": "未知原因；现象：能ping通，无法登陆，过五六分钟后恢复正常",
+    "method": "",
+    "sort": "合成层问题",
+    "province": "上海"
+  },
+  {
+    "id": 136,
+    "question": "写文件程序挂掉",
+    "reason": "未知原因；现象：能ping通，无法登陆，长时间",
+    "method": "",
+    "sort": "合成层问题",
+    "province": "上海"
+  },
+  {
+    "id": 137,
+    "question": "预处理程序挂掉",
+    "reason": "能ping通，ssh上不去（已重启）；",
+    "method": "",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 138,
+    "question": "写文件程序挂掉",
+    "reason": "能ping通，ssh上不去（已重启）；",
+    "method": "",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 139,
+    "question": "写文件程序挂掉",
+    "reason": "能ping通，ssh上不去（已重启）；",
+    "method": "",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 140,
+    "question": "写文件程序挂掉",
+    "reason": "能ping通，ssh上不去（已重启）；坏盘3块：data1/9/12",
+    "method": "",
+    "sort": "合成层问题",
+    "province": "四川"
+  },
+  {
+    "id": 141,
+    "question": "输出服务器程序挂掉",
+    "reason": "磁盘坏坏一块，导致系统不能开机，已剔除",
+    "method": "",
+    "sort": "合成层问题",
+    "province": "上海"
+  },
+  {
+    "id": 142,
+    "question": "输出服务器程序挂掉",
+    "reason": "能ping通，ssh上不去",
+    "method": "",
+    "sort": "合成层问题",
+    "province": "上海"
+  },
+  {
+    "id": 143,
+    "question": "输出服务器程序挂掉",
+    "reason": "能ping通，ssh上不去",
+    "method": "",
+    "sort": "合成层问题",
+    "province": "上海"
+  },
+  {
+    "id": 144,
+    "question": "集群挂掉",
+    "reason": "硬盘故障",
+    "method": "",
+    "sort": "合成层问题",
+    "province": "贵州"
+  },
+  {
+    "id": 145,
+    "question": "集群挂掉",
+    "reason": "磁盘故障",
+    "method": "",
+    "sort": "合成层问题",
+    "province": "贵州"
+  },
+  {
+    "id": 146,
+    "question": "CPU故障",
+    "reason": "CPU故障",
+    "method": "",
+    "sort": "合成层问题",
+    "province": "贵州"
+  }
+]

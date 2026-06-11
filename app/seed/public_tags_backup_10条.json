@@ -1,0 +1,52 @@
+[
+  {
+    "name": "device_id",
+    "field_name": "device_id",
+    "desc": "设备标识"
+  },
+  {
+    "name": "province",
+    "field_name": "province",
+    "desc": "省份标签"
+  },
+  {
+    "name": "server_ip",
+    "field_name": "server_ip",
+    "desc": "服务器IP地址"
+  },
+  {
+    "name": "service_name",
+    "field_name": "service_name",
+    "desc": "服务名称"
+  },
+  {
+    "name": "environment",
+    "field_name": "environment",
+    "desc": "运行环境（生产/测试/开发）"
+  },
+  {
+    "name": "cluster",
+    "field_name": "cluster",
+    "desc": "集群名称"
+  },
+  {
+    "name": "instance_id",
+    "field_name": "instance_id",
+    "desc": "实例ID"
+  },
+  {
+    "name": "container_name",
+    "field_name": "container_name",
+    "desc": "容器名称"
+  },
+  {
+    "name": "app_version",
+    "field_name": "app_version",
+    "desc": "应用版本号"
+  },
+  {
+    "name": "db_name",
+    "field_name": "db_name",
+    "desc": "数据库名称"
+  }
+]

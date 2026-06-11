@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  ops-assistant:
+    build: .
+    ports:
+      - "8012:8012"
+    environment:
+      - OPS_ASSISTANT_DATA_DIR=/app/app/seed
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_BASE_URL=${OPENAI_BASE_URL:-https://api.deepseek.com}
+    volumes:
+      - ./app:/app/app
+      - ./data:/app/data
+    restart: unless-stopped

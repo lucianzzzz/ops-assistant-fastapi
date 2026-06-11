@@ -1,0 +1,146 @@
+[
+  {
+    "metric": "dpi.if1_delay",
+    "name": "IF1接收时延",
+    "measurement": "dpi",
+    "field_name": "if1_delay",
+    "desc": "用于衡量 IF1 链路接收时延情况",
+    "unit": "ms"
+  },
+  {
+    "metric": "system.cpu_usage",
+    "name": "CPU利用率",
+    "measurement": "system",
+    "field_name": "cpu_usage",
+    "desc": "用于衡量主机 CPU 使用率",
+    "unit": "%"
+  },
+  {
+    "metric": "system.memory_usage",
+    "name": "内存使用率",
+    "measurement": "system",
+    "field_name": "memory_usage",
+    "desc": "主机内存使用百分比",
+    "unit": "%"
+  },
+  {
+    "metric": "system.disk_usage",
+    "name": "磁盘使用率",
+    "measurement": "system",
+    "field_name": "disk_usage",
+    "desc": "磁盘空间使用百分比",
+    "unit": "%"
+  },
+  {
+    "metric": "database.db_connections",
+    "name": "数据库连接数",
+    "measurement": "database",
+    "field_name": "db_connections",
+    "desc": "当前活跃的数据库连接数量",
+    "unit": "个"
+  },
+  {
+    "metric": "application.api_response_time",
+    "name": "接口响应时间",
+    "measurement": "application",
+    "field_name": "api_response_time",
+    "desc": "API接口平均响应时间",
+    "unit": "ms"
+  },
+  {
+    "metric": "cache.redis_latency",
+    "name": "Redis响应时间",
+    "measurement": "cache",
+    "field_name": "redis_latency",
+    "desc": "Redis缓存查询响应时间",
+    "unit": "ms"
+  },
+  {
+    "metric": "mq.mq_lag",
+    "name": "消息队列堆积量",
+    "measurement": "mq",
+    "field_name": "mq_lag",
+    "desc": "消息队列待消费消息数量",
+    "unit": "条"
+  },
+  {
+    "metric": "network.tcp_connections",
+    "name": "TCP连接数",
+    "measurement": "network",
+    "field_name": "tcp_connections",
+    "desc": "当前TCP连接总数",
+    "unit": "个"
+  },
+  {
+    "metric": "jvm.heap_usage",
+    "name": "JVM堆内存使用率",
+    "measurement": "jvm",
+    "field_name": "jvm_heap_usage",
+    "desc": "JVM堆内存使用百分比",
+    "unit": "%"
+  },
+  {
+    "metric": "jvm.full_gc_count",
+    "name": "Full GC次数",
+    "measurement": "jvm",
+    "field_name": "full_gc_count",
+    "desc": "Full GC触发次数",
+    "unit": "次"
+  },
+  {
+    "metric": "gateway.nginx_error_rate",
+    "name": "Nginx错误率",
+    "measurement": "gateway",
+    "field_name": "nginx_error_rate",
+    "desc": "Nginx 5xx错误请求占比",
+    "unit": "%"
+  },
+  {
+    "metric": "database.mysql_replication_lag",
+    "name": "MySQL主从延迟",
+    "measurement": "database",
+    "field_name": "mysql_replication_lag",
+    "desc": "MySQL主从复制延迟时间",
+    "unit": "秒"
+  },
+  {
+    "metric": "container.restart_count",
+    "name": "容器重启次数",
+    "measurement": "container",
+    "field_name": "container_restart_count",
+    "desc": "Docker容器重启次数",
+    "unit": "次"
+  },
+  {
+    "metric": "search.es_query_time",
+    "name": "ES查询响应时间",
+    "measurement": "search",
+    "field_name": "es_query_time",
+    "desc": "Elasticsearch查询平均响应时间",
+    "unit": "ms"
+  },
+  {
+    "metric": "application.api_qps",
+    "name": "API请求QPS",
+    "measurement": "application",
+    "field_name": "api_qps",
+    "desc": "API每秒请求数",
+    "unit": "次/秒"
+  },
+  {
+    "metric": "microservice.circuit_breaker_count",
+    "name": "熔断触发次数",
+    "measurement": "microservice",
+    "field_name": "circuit_breaker_count",
+    "desc": "服务熔断器触发次数",
+    "unit": "次"
+  },
+  {
+    "metric": "microservice.rate_limit_count",
+    "name": "限流触发次数",
+    "measurement": "microservice",
+    "field_name": "rate_limit_count",
+    "desc": "API限流触发次数",
+    "unit": "次"
+  }
+]
