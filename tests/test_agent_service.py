@@ -1,7 +1,7 @@
 """Agent Service 集成测试"""
 import pytest
-from app.core.agent_service import AgentService
-from app.core.action_generator import ActionGenerator
+from app.core.agent.agent_service import AgentService
+from app.core.agent.action_generator import ActionGenerator
 
 
 class TestAgentServiceWithReAct:

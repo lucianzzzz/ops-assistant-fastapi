@@ -1,6 +1,6 @@
 """ReAct Agent 单元测试"""
 import pytest
-from app.core.react_agent import ReActAgent, ReActResult, ThoughtType, ActionType
+from app.core.agent.react_agent import ReActAgent, ReActResult, ThoughtType, ActionType
 
 
 class TestReActAgent:

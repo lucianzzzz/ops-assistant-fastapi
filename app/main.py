@@ -1,4 +1,5 @@
 import logging
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
@@ -10,15 +11,38 @@ from app.api.routes.assistant import router as assistant_router
 from app.api.routes.agent import router as agent_router
 from app.core.common.config import DATA_DIR, KNOWLEDGE_FILE, METRICS_FILE, PUBLIC_TAGS_FILE, STATIC_DIR, TEMPLATES_DIR
 from app.core.common.dependencies import get_repository
-from app.core.common.logging import setup_logging
+from app.core.common.logging import setup_logging, get_logger
 from app.core.common.exceptions import OpsAssistantError
 from app.middleware.error_handler import ops_error_handler, validation_error_handler, global_error_handler
 
 # 配置日志
 setup_logging(log_level="INFO")
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
-app = FastAPI(title="Ops Assistant FastAPI", version="0.1.0")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """应用生命周期管理"""
+    # 启动
+    logger.info("Ops Assistant FastAPI 启动成功")
+    logger.info(f"数据目录: {DATA_DIR}")
+
+    # 注册内置工具
+    try:
+        from app.core.agent.tools.registry import register_builtin_tools
+        repository = get_repository()
+        register_builtin_tools(repository)
+        logger.info("✓ 工具注册完成（知识库查询、指标检查、Shell命令）")
+    except Exception as e:
+        logger.warning(f"工具注册失败: {e}")
+
+    yield
+
+    # 关闭
+    logger.info("Ops Assistant FastAPI 关闭")
+
+
+app = FastAPI(title="Ops Assistant FastAPI", version="0.1.0", lifespan=lifespan)
 
 # 注册异常处理器
 app.add_exception_handler(OpsAssistantError, ops_error_handler)
@@ -40,19 +64,6 @@ app.include_router(assistant_router)
 app.include_router(agent_router)
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
-
-
-@app.on_event("startup")
-async def startup_event():
-    """应用启动事件"""
-    logger.info("Ops Assistant FastAPI 启动成功")
-    logger.info(f"数据目录: {DATA_DIR}")
-
-
-@app.on_event("shutdown")
-async def shutdown_event():
-    """应用关闭事件"""
-    logger.info("Ops Assistant FastAPI 关闭")
 
 
 @app.get("/", response_class=HTMLResponse)

@@ -1,11 +1,15 @@
 import re
 from dataclasses import asdict, dataclass
 from difflib import SequenceMatcher
+from functools import lru_cache
 from typing import Any, Optional
 
 from app.core.models.base import KnowledgeItem, MetricItem, PublicTagItem
 from app.core.assistant.repository import InMemoryRepository
 from app.core.ai.ai_assistant import AIAssistant
+from app.core.common.logging import get_logger
+
+logger = get_logger(__name__)
 
 
 @dataclass
@@ -45,14 +49,39 @@ class OpsAssistantService:
         "如何",
     }
 
-    def __init__(self, repository: InMemoryRepository, ai_assistant: Optional[AIAssistant] = None, action_generator=None):
+    def __init__(
+        self,
+        repository: InMemoryRepository,
+        ai_assistant: Optional[AIAssistant] = None,
+        action_generator=None
+    ):
         self.repository = repository
         self.ai_assistant = ai_assistant or AIAssistant()
-        # 延迟导入避免循环依赖
+
         if action_generator is None:
             from app.core.agent.action_generator import ActionGenerator
             action_generator = ActionGenerator(self.ai_assistant)
+
         self.action_generator = action_generator
+
+        # 性能优化：预处理和缓存
+        self._normalized_knowledge_cache = {}
+        self._normalized_metrics_cache = {}
+        self._preprocess_data()
+
+    def _preprocess_data(self):
+        """预处理数据以加速查询"""
+        for item in self.repository.list_knowledge():
+            self._normalized_knowledge_cache[item.id] = self.normalize(item.question)
+
+        for item in self.repository.list_metrics():
+            key = item.metric or item.name
+            self._normalized_metrics_cache[key] = {
+                'name': self.normalize(item.name),
+                'metric': self.normalize(item.metric or ""),
+                'field': self.normalize(item.field_name),
+                'desc': self.normalize(item.desc or "")
+            }
 
     def ask(self, question: str, province: str = "", top_k: int = 3) -> dict[str, Any]:
         normalized_question = self.normalize(question)
@@ -89,10 +118,18 @@ class OpsAssistantService:
             if keywords or metric_matches:
                 metric_name = metric_matches[0]["name"] if metric_matches else ""
                 actions = self.action_generator.generate_from_keywords(keywords, metric_name)
-                result["executable_actions"] = [action.dict() for action in actions]
-        except Exception as e:
+                result["executable_actions"] = [action.model_dump() for action in actions]
+        except (KeyError, AttributeError, ValueError) as e:
             # 动作生成失败不影响主流程
-            print(f"Warning: Failed to generate actions: {e}")
+            logger.warning(
+                "Failed to generate actions",
+                extra={
+                    "error": str(e),
+                    "error_type": type(e).__name__,
+                    "keywords": keywords[:3] if keywords else [],
+                    "has_metric_matches": bool(metric_matches)
+                }
+            )
             result["executable_actions"] = []
 
         # 添加推理步骤（仅当使用AI时才生成）
@@ -131,50 +168,36 @@ class OpsAssistantService:
 
         return result
 
+    def _build_empty_result(self, question: str, error_message: str = "查询出错，请稍后重试") -> dict[str, Any]:
+        """构建空结果（DRY）"""
+        return {
+            "question": question,
+            "normalized_question": question,
+            "normalized_metric": "",
+            "keywords": [],
+            "matched_knowledge": [],
+            "possible_reason": [error_message],
+            "suggested_steps": [],
+            "related_objects": {"metrics": [], "public_tags": []},
+            "confidence": 0.0,
+            "next_actions": [],
+            "fallback_questions": [],
+            "ai_fallback": None,
+            "executable_actions": [],
+        }
+
     async def ask_with_ai(self, question: str, province: str = "", top_k: int = 3) -> dict[str, Any]:
         """带 AI 后备查询的异步版本"""
         try:
             result = self.ask(question, province, top_k)
         except Exception as e:
-            # 如果 ask 失败，返回一个基础结果
-            print(f"Error in ask(): {e}")
+            logger.error(f"Error in ask(): {e}")
             import traceback
             traceback.print_exc()
-            result = {
-                "question": question,
-                "normalized_question": question,
-                "normalized_metric": "",
-                "keywords": [],
-                "matched_knowledge": [],
-                "possible_reason": ["查询出错，请稍后重试"],
-                "suggested_steps": [],
-                "related_objects": {"metrics": [], "public_tags": []},
-                "confidence": 0.0,
-                "next_actions": [],
-                "fallback_questions": [],
-                "ai_fallback": None,
-                "executable_actions": [],
-            }
-            return result
+            return self._build_empty_result(question)
 
         if not result:
-            # 防御性检查
-            result = {
-                "question": question,
-                "normalized_question": question,
-                "normalized_metric": "",
-                "keywords": [],
-                "matched_knowledge": [],
-                "possible_reason": ["查询出错，请稍后重试"],
-                "suggested_steps": [],
-                "related_objects": {"metrics": [], "public_tags": []},
-                "confidence": 0.0,
-                "next_actions": [],
-                "fallback_questions": [],
-                "ai_fallback": None,
-                "executable_actions": [],
-            }
-            return result
+            return self._build_empty_result(question)
 
         # 如果需要 AI 后备查询
         ai_fallback = result.get("ai_fallback") or {}
@@ -221,8 +244,13 @@ class OpsAssistantService:
 
         matches: list[KnowledgeMatch] = []
         for item in queryset[:500]:
-            target = self.normalize(item.question)
-            score = self.similarity(question, target)
+            # 使用缓存的标准化文本
+            target = self._normalized_knowledge_cache.get(item.id)
+            if not target:
+                target = self.normalize(item.question)
+                self._normalized_knowledge_cache[item.id] = target
+
+            score = self._similarity_cached(question, target)
             if question and question in target:
                 score = max(score, 0.95)
             if score < 0.35:
@@ -244,13 +272,20 @@ class OpsAssistantService:
     def match_metrics(self, question: str, keywords: list[str], top_k: int) -> list[dict[str, Any]]:
         matches: list[MetricMatch] = []
         for item in self.repository.list_metrics()[:500]:
-            candidates = [
-                self.normalize(item.name),
-                self.normalize(item.metric),
-                self.normalize(item.field_name),
-                self.normalize(item.desc or ""),
-            ]
-            score = max(self.similarity(question, candidate) for candidate in candidates if candidate)
+            # 使用缓存的标准化文本
+            key = item.metric or item.name
+            cached = self._normalized_metrics_cache.get(key)
+            if cached:
+                candidates = [cached['name'], cached['metric'], cached['field'], cached['desc']]
+            else:
+                candidates = [
+                    self.normalize(item.name),
+                    self.normalize(item.metric or ""),
+                    self.normalize(item.field_name),
+                    self.normalize(item.desc or ""),
+                ]
+
+            score = max(self._similarity_cached(question, candidate) for candidate in candidates if candidate)
             keyword_hits = sum(1 for keyword in keywords if any(keyword in candidate for candidate in candidates if candidate))
             if keyword_hits:
                 score = max(score, min(0.9, 0.45 + keyword_hits * 0.15))
@@ -336,6 +371,7 @@ class OpsAssistantService:
                 fallback_items.append({"id": item.id, "question": item.question})
         return fallback_items[:top_k]
 
-    @staticmethod
-    def similarity(source: str, target: str) -> float:
+    @lru_cache(maxsize=1024)
+    def _similarity_cached(self, source: str, target: str) -> float:
+        """缓存相似度计算结果"""
         return SequenceMatcher(None, source, target).ratio()

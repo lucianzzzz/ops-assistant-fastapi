@@ -1,5 +1,5 @@
 from typing import Any
-from typing import Any
+
 from fastapi import APIRouter, Depends
 
 from app.core.common.dependencies import get_repository, get_service

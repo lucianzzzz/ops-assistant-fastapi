@@ -3,6 +3,8 @@ import os
 from typing import List, Dict, Any, Optional
 from pathlib import Path
 
+from app.core.common.logging import get_logger
+
 try:
     from sentence_transformers import SentenceTransformer
     import chromadb
@@ -10,6 +12,8 @@ try:
     SEMANTIC_AVAILABLE = True
 except ImportError:
     SEMANTIC_AVAILABLE = False
+
+logger = get_logger(__name__)
 
 
 class SemanticRetriever:
@@ -164,7 +168,7 @@ class HybridRetriever:
             ]
             self.semantic_retriever.add_documents(documents)
         except Exception as e:
-            print(f"语义检索初始化失败，回退到关键词匹配: {e}")
+            logger.warning(f"语义检索初始化失败，回退到关键词匹配: {e}")
             self.use_semantic = False
 
     def search(self, query: str, keywords: List[str] = None, top_k: int = 5) -> List[Dict[str, Any]]:
@@ -185,7 +189,7 @@ class HybridRetriever:
                             "match_type": "semantic"
                         })
             except Exception as e:
-                print(f"语义检索失败: {e}")
+                logger.error(f"语义检索失败: {e}")
 
         # 关键词匹配（补充）
         if keywords and len(results) < top_k:

@@ -1,6 +1,6 @@
 """语义检索系统单元测试"""
 import pytest
-from app.core.semantic_retriever import HybridRetriever
+from app.core.ai.semantic_retriever import HybridRetriever
 
 
 class TestHybridRetriever:

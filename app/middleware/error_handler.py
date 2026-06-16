@@ -1,13 +1,13 @@
 """统一异常处理中间件"""
 
-import logging
 from fastapi import Request, status
 from fastapi.responses import JSONResponse
 from pydantic import ValidationError
 
 from app.core.common.exceptions import OpsAssistantError
+from app.core.common.logging import get_logger
 
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 
 async def ops_error_handler(request: Request, exc: OpsAssistantError) -> JSONResponse:
