@@ -8,7 +8,6 @@ from fastapi.templating import Jinja2Templates
 from pydantic import ValidationError
 
 from app.api.routes.assistant import router as assistant_router
-from app.api.routes.agent import router as agent_router
 from app.core.common.config import DATA_DIR, KNOWLEDGE_FILE, METRICS_FILE, PUBLIC_TAGS_FILE, STATIC_DIR, TEMPLATES_DIR
 from app.core.common.dependencies import get_repository
 from app.core.common.logging import setup_logging, get_logger
@@ -61,7 +60,6 @@ app.add_middleware(
 )
 
 app.include_router(assistant_router)
-app.include_router(agent_router)
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 
